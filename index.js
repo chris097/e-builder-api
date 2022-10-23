@@ -21,10 +21,6 @@ app.use('/api/v1', userInfo)
 
 const port = process.env.PORT || 5400;
 
-// app.get('/', (req, res) => {
-//     res.send('General Note.')
-// });
-
 mongoose.connect(MONGODB_URL, {
     usenewurlparser: true,
     useunifiedtopology: true,
