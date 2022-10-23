@@ -2,8 +2,8 @@ const UserInfo = require('../model/userInfo');
 
 exports.getUserInfo = async (req, res) => {
     const userInfo = await UserInfo.find();
-    res.status(200).json({data: userInfo, status: 200})
-}
+    res.status(200).json({ data: userInfo, status: 200 })
+};
 
 exports.createUserInfo = async (req, res) => {
     const { firstName, lastName, profession, email, phone, city, state, country } = req.body;
@@ -20,8 +20,8 @@ exports.createUserInfo = async (req, res) => {
             _id: req._id
         })
         await info.save();
-        res.status(201).json({message: "user information is successfully created."})
+        res.status(201).json({ message: "user information is successfully created." })
     } catch (err) {
-        res.json({message: err.message})
+        res.json({ message: err.message })
     }
-}
+};
