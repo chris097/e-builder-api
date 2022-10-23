@@ -17,7 +17,6 @@ const corsOptions ={
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-app.use('/api/v1', recipe);
 app.use('/api/v1', userInfo)
 
 const port = process.env.PORT || 5400;
