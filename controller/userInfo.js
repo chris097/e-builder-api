@@ -5,7 +5,6 @@ exports.getUserInfo = async (req, res) => {
     res.status(200).json({data: userInfo, status: 200})
 }
 
-
 exports.createUserInfo = async (req, res) => {
     const { firstName, lastName, profession, email, phone, city, state, country } = req.body;
     try {
