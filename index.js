@@ -5,8 +5,9 @@ dotenv.config({ path: "./config.env" })
 
 const cors = require('cors')
 const mongoose = require('mongoose');
-const recipe = require('./router/recipe');
-const userInfo = require('./router/userInfo')
+const userInfo = require('./router/userInfo');
+const education = require('./router/education');
+const workHistory = require('./router/workHistory');
 
 const { MONGODB_URL } = process.env;
 
@@ -17,7 +18,9 @@ const corsOptions ={
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-app.use('/api/v1', userInfo)
+app.use('/api/v1', userInfo);
+app.use('/api/v1', education);
+app.use('/api/v1', workHistory);
 
 const port = process.env.PORT || 5400;
 

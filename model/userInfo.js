@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-const { isEmail } = require('validator')
+const { isEmail } = require('validator');
 
 const Schema = mongoose.Schema;
 
 const summarySchema = new Schema({
-    firstName: {
+    first_name: {
         type: String,
         required: [true, 'firstName is required.']
     },
-    lastName: {
+    last_name: {
         type: String,
         required: [true, 'lastName is required.']
     },
@@ -16,10 +16,18 @@ const summarySchema = new Schema({
         type: String,
         required: [true, 'profession is required.']
     },
+    email: {
+        type: String,
+        trim: true,
+        unique: true,
+        required: [true, 'email is required.'],
+        minLength: [5, "email minimum length should be 5"],
+        validate: [isEmail, "email is invalid"]
+    },
     phone: {
         type: String,
-        match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Enter a valid phone number'],
-        required: true
+        // match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Enter a valid phone number'],
+        required: [true, 'phone is required.']
     },
     city: {
         type: String,
@@ -33,7 +41,7 @@ const summarySchema = new Schema({
         type: String,
         required: [true, 'country is required.']
     },
-    created_at: { type: Date, default: Date.now },
+    created_at: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("UserInfo", summarySchema);
