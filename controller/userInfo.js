@@ -10,7 +10,18 @@ exports.getUserInfo = async (req, res) => {
 };
 
 exports.createUserInfo = async (req, res) => {
-    const { first_name, last_name, profession, email, phone, city, state, country } = req.body;
+    const {
+        first_name,
+        last_name,
+        profession,
+        email,
+        phone,
+        bio,
+        street,
+        city,
+        state,
+        country
+    } = req.body;
     try {
         const info = new UserInfo({
             first_name: first_name,
@@ -18,6 +29,8 @@ exports.createUserInfo = async (req, res) => {
             profession: profession,
             email: email,
             phone: phone,
+            bio: bio,
+            street: street,
             city: city,
             state: state,
             country: country,

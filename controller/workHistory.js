@@ -10,13 +10,14 @@ exports.getWorkHistory = async (req, res) => {
 };
 
 exports.createWorkHistory = async (req, res) => {
-    const { title, employer, city, state, description, start_date, end_date } = req.body;
+    const { title, employer, city, state, country, description, start_date, end_date } = req.body;
     try {
         const workHistory = new WorkHistory({
             title: title,
             employer: employer,
             city: city,
             state: state,
+            country: country,
             description: description,
             start_date: start_date,
             end_date: end_date
