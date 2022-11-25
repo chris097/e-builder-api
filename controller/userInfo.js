@@ -37,7 +37,7 @@ exports.createUserInfo = async (req, res) => {
             _id: req._id
         })
         await info.save();
-        res.status(201).json({ message: "user information successfully created." })
+        res.status(201).json({ message: "user information successfully created.", status: 201 })
     } catch (err) {
         res.json({ message: err.message })
     }
