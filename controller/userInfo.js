@@ -42,3 +42,7 @@ exports.createUserInfo = async (req, res) => {
         res.json({ message: err.message })
     }
 };
+
+exports.updateUserInfo = async (req, res) => {
+    // update user info here
+}
