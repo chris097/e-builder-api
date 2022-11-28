@@ -11,10 +11,10 @@ const workHistory = new Schema({
         type: String,
         required: [true, 'employer is required.']
     },
-    city: {
-        type: String,
-        required: [true, 'city is required.']
-    },
+    // city: {
+    //     type: String,
+    //     required: [true, 'city is required.']
+    // },
     state: {
         type: String,
         required: [true, 'state is required.']

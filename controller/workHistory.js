@@ -15,7 +15,7 @@ exports.createWorkHistory = async (req, res) => {
         const workHistory = new WorkHistory({
             title: title,
             employer: employer,
-            city: city,
+            // city: city,
             state: state,
             country: country,
             description: description,

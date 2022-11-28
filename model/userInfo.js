@@ -51,6 +51,18 @@ const summarySchema = new Schema({
         minLength: 50,
         required: [true, 'bio is required.']
     },
+    linkedin: {
+        type: String,
+        required: [true, 'linkedIn is required.']
+    },
+    twitter: {
+        type: String,
+        required: [true, "twitter is required"]
+    },
+    website: {
+        type: String,
+        required: [true, "website or portfolio is required."]
+    },
     created_at: { type: Date, default: Date.now }
 });
 
