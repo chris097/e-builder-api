@@ -26,7 +26,7 @@ const education = new Schema({
     end_date: {
         type: String,
     },
-    craeted_at: { type: Date, default: Date.now }
+    created_at: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model("Education", education)

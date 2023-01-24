@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const userInfo = require('./router/userInfo');
 const education = require('./router/education');
 const workHistory = require('./router/workHistory');
+const technicalSkill = require('./router/technicalSkill');
 
 const { MONGODB_URL } = process.env;
 
@@ -21,6 +22,7 @@ app.use(cors(corsOptions));
 app.use('/api/v1', userInfo);
 app.use('/api/v1', education);
 app.use('/api/v1', workHistory);
+app.use('/api/v1', technicalSkill)
 
 const port = process.env.PORT || 5400;
 
