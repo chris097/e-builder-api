@@ -18,7 +18,7 @@ exports.createSkills = async (req, res) => {
     const { name } = req.body;
     try {
         const skill = new Skill({
-            name: name,
+            name: {...name},
             _id: req._id
         })
         await skill.save();
