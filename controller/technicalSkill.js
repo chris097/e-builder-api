@@ -5,8 +5,9 @@ exports.getSkills = async (req, res) => {
         const skills = await Skill.find();
         res.status(200).json(
             {
-                data: skills,
-                status: 200, message: "succcessfully",
+                skills,
+                status: 200,
+                message: "Fetched skills succcessfully",
                 created_at: Date.now()
             })
     } catch (err) {
@@ -18,12 +19,17 @@ exports.createSkills = async (req, res) => {
     const { name } = req.body;
     try {
         const skill = new Skill({
-            name: {...name},
+            name: name,
             _id: req._id
-        })
-        await skill.save();
-        res.status(201).json({ message: "stack updated", status: 201, success: true })
+        });
+        if (!skill.name.length) {
+            res.status(400).json({message: "Wrong formatting"})
+        } else {
+            await skill.save();
+        }
+        console.log(skill)
+        res.status(201).json({ message: "Skill created successfully", status: 201, success: true })
     } catch (err) {
         res.json({ message: err.message })
     }
-};
+}

@@ -21,7 +21,7 @@ exports.createWorkHistory = async (req, res) => {
             description: description,
             start_date: start_date,
             end_date: end_date
-        })
+        });
         await workHistory.save()
         res.status(201).json({message: 'work history successfully created.'})
     } catch (err) {

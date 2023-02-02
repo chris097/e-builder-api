@@ -1,9 +1,27 @@
 const UserInfo = require('../model/userInfo');
+const Skill = require('../model/technicalSkill');
+const History = require('../model/workHistory');
+const Education = require('../model/education');
+const Certificate = require('../model/certificate');
 
 exports.getUserInfo = async (req, res) => {
     try {
         const userInfo = await UserInfo.find();
-        res.status(200).json({ data: { ...userInfo }, status: 200, message: "successfully" })
+        const history = await History.find();
+        const skill = await Skill.find();
+        const education = await Education.find();
+        const certificate = await Certificate.find();
+        res.status(200).json({
+            data: {
+                user: userInfo ,
+            history: history ,
+            skill: skill,
+            education: education,
+            certificate: certificate
+            },
+            status: 200,
+            message: "successfully"
+        })
     } catch (err) {
         res.status(500).json({message: err.message})
     }

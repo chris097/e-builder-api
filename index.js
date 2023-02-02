@@ -9,6 +9,8 @@ const userInfo = require('./router/userInfo');
 const education = require('./router/education');
 const workHistory = require('./router/workHistory');
 const technicalSkill = require('./router/technicalSkill');
+const certificate = require('./router/certificate');
+const auth = require('./router/auth')
 
 const { MONGODB_URL } = process.env;
 
@@ -22,7 +24,14 @@ app.use(cors(corsOptions));
 app.use('/api/v1', userInfo);
 app.use('/api/v1', education);
 app.use('/api/v1', workHistory);
-app.use('/api/v1', technicalSkill)
+app.use('/api/v1', technicalSkill);
+app.use('/api/v1', certificate);
+app.use('/api/v1', auth);
+
+app.get('/', (req, res) => {
+    res.send("Hello world")
+    console.log("hello world")
+})
 
 const port = process.env.PORT || 5400;
 
