@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
     console.log("hello world")
 })
 
-const port = process.env.PORT || 5400;
+const port = `0.0.0.0` || 5400;
 
 console.log(process.env.PORT)
 
