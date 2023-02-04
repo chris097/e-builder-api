@@ -21,7 +21,7 @@ exports.createEducation = async (req, res) => {
             end_date: end_date
         })
         await education.save()
-        res.status(201).json({message: "education details successfully created"})
+        res.status(201).json({message: "education details successfully created", status: 201})
     } catch (err) {
         res.status(500).json({message: err.message})
     }
