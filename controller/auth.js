@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-const { JWT_TOKEN } = process.env;
+const { JWT_TOKEN, USERNAME, PASSWORD } = process.env;
 
 exports.getUsers = async (req, res) => {
     console.log(req.headers['authorization'])
@@ -57,21 +57,21 @@ exports.loginUser = async (req, res) => {
 exports.forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
-        const user = Auth.findOne({ email: email });
-        if (!user) return res.status(404).json({ message: "User doesn't exist" });
-        const token = jwt.sign({ _id: user._id }, JWT_TOKEN, { expiresIn: "1h" });
+        const auth = Auth.findOne({ email: email });
+        if (!auth) return res.status(404).json({ message: "User doesn't exist" });
+        const token = jwt.sign({ _id: auth._id }, JWT_TOKEN, { expiresIn: "1h" });
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'chrisfidel.international@gmail.com',
-                pass: 'chris@1995'
+                user: `${USERNAME}`,
+                pass: `${PASSWORD}`
             }
         });
         const mailOptions = {
             from: 'cevBuilder',
-            to: `chrisfidel.international@gmail.com`,
+            to: `${email}`,
             subject: 'Reset Your Password',
-            text: `http://localhost:3000/reset-password/${user._id}/${token}`
+            text: `http://localhost:3000/reset-password/${auth.$id}/${token}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
@@ -82,6 +82,6 @@ exports.forgotPassword = async (req, res) => {
             }
         });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 }
