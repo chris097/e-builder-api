@@ -1,6 +1,7 @@
 const Auth = require('../model/auth');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 
 const { JWT_TOKEN } = process.env;
 
@@ -12,13 +13,12 @@ exports.getUsers = async (req, res) => {
 
 exports.registerUser = async (req, res, next) => {
     try {
-        const { fullName, email, password } = req.body;
+        const { email, password } = req.body;
         const auth = new Auth({
-            fullName: fullName,
             email: email,
             password: password
         });
-        if(!fullName) return res.status(400).json({message: 'full name is required.'})
+        // if(!fullName) return res.status(400).json({message: 'full name is required.'})
         if(!email) return res.status(400).json({message: 'email is required.'})
         if(!password) return res.status(400).json({message: 'password is required.'})
         const salt = await bcrypt.genSalt(10);
@@ -53,3 +53,35 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: err.message })
     }
 };
+
+exports.forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+        const user = Auth.findOne({ email: email });
+        if (!user) return res.status(404).json({ message: "User doesn't exist" });
+        const token = jwt.sign({ _id: user._id }, JWT_TOKEN, { expiresIn: "1h" });
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'chrisfidel.international@gmail.com',
+                pass: 'chris@1995'
+            }
+        });
+        const mailOptions = {
+            from: 'cevBuilder',
+            to: `chrisfidel.international@gmail.com`,
+            subject: 'Reset Your Password',
+            text: `http://localhost:3000/reset-password/${user._id}/${token}`
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                return res.status(201).json({message: "Email sent successfully!"})
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
