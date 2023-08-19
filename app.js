@@ -12,7 +12,7 @@ const technicalSkill = require('./router/technicalSkill');
 const certificate = require('./router/certificate');
 const auth = require('./router/auth')
 
-const { MONGODB_URL } = process.env;
+const { MONGODB_URL_TEST } = process.env;
 
 app.use(express.json())
 const corsOptions ={
@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 const port = process.env.PORT || 5400;
 
 
-mongoose.connect(MONGODB_URL, {
+mongoose.connect(MONGODB_URL_TEST, {
     usenewurlparser: true,
     useunifiedtopology: true,
 }).then(() => {
