@@ -4,17 +4,9 @@ const { isEmail } = require('validator');
 const Schema = mongoose.Schema;
 
 const summarySchema = new Schema({
-    first_name: {
+    fullname: {
         type: String,
-        required: [true, 'firstName is required.']
-    },
-    last_name: {
-        type: String,
-        required: [true, 'lastName is required.']
-    },
-    profession: {
-        type: String,
-        required: [true, 'profession is required.']
+        required: [true, 'fullname is required.']
     },
     email: {
         type: String,
@@ -29,39 +21,19 @@ const summarySchema = new Schema({
         // match: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/, 'Enter a valid phone number'],
         required: [true, 'phone is required.']
     },
-    street: {
+    portfolio: {
         type: String,
-        required: [true, 'street is required.']
+        required: [true, 'portfolio is required.']
     },
-    city: {
+    address: {
         type: String,
-        required: [true, 'city is required.']
-    },
-    state: {
-        type: String,
-        required: [true, 'state is required.']
-    },
-    country: {
-        type: String,
-        required: [true, 'country is required.']
+        required: [true, 'address is required.']
     },
     bio: {
         type: String, 
         maxLenght: 500,
         minLength: 50,
         required: [true, 'bio is required.']
-    },
-    linkedin: {
-        type: String,
-        required: [true, 'linkedIn is required.']
-    },
-    twitter: {
-        type: String,
-        required: [true, "twitter is required"]
-    },
-    website: {
-        type: String,
-        required: [true, "website or portfolio is required."]
     },
     created_at: { type: Date, default: Date.now }
 });
