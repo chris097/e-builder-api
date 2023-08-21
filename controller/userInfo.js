@@ -3,11 +3,7 @@ const UserInfo = require('../model/userInfo');
 exports.getUserInfo = async (req, res) => {
     try {
         const userInfo = await UserInfo.find();
-        res.status(200).json({
-            data: { user: userInfo ,},
-            status: 200,
-            message: "success"
-        })
+        res.status(200).json({userInfo, status: 200, message: "success" })
     } catch (err) {
         res.status(500).json({message: err.message})
     }
