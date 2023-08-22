@@ -4,6 +4,10 @@ const { isEmail } = require('validator');
 const Schema = mongoose.Schema;
 
 const summarySchema = new Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
     fullname: {
         type: String,
         required: [true, 'fullname is required.']
