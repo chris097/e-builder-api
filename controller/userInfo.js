@@ -41,7 +41,7 @@ exports.updateUserInfo = async (req, res) => {
     try {
         const userId =  req.params.id;
         await UserInfo.findOneAndUpdate({_id: userId}, req.body, { new: true });
-        res.status(201).json({message: "User Information Updated Successfully!"})
+        res.status(201).json({message: "User Information Updated Successfully!", status: 201})
     } catch (err) {
         res.json({message: err.message})
     }
