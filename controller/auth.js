@@ -198,7 +198,7 @@ exports.resetPassword = async (req, res) => {
         // Update the user's password
         const updatedUser = await Auth.findByIdAndUpdate({ _id: id }, { password: hash });
 
-        res.json({ message: "Success" });
+        res.json({ message: "Password Updated Successfully", status: "success" });
     } catch (err) {
         if (err.name === "JsonWebTokenError") {
             res.status(401).json({ message: "Error with token" });
