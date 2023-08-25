@@ -152,27 +152,6 @@ exports.loginUser = async (req, res) => {
     }
 };
 
-// exports.loginUserWithToken = async (req, res) => {
-//     try {
-//         const { email, password } = req.body;
-//         const auth = await Auth.findOne({ email: email });
-//         if (!auth) return res.status(400).json({ message: "Crendentials not found" });
-//         const token = jwt.sign({ _id: auth._id, email }, JWT_TOKEN, { expiresIn: "1h" });
-//         auth.token = token;
-//         if (auth) {
-//             const validateUser = await bcrypt.compare(password, auth.password);
-//             if (validateUser) {
-//                 return res.status(200).json({ data: auth, status: 201, message: "Logged in successfully!" })
-//             } else {
-//                 return res.status(400).json({ message: "email or password is incorrect" })
-//             }
-//         } else {
-//             return res.status(500).json({ message: "email or password is incorrect" })
-//         }
-//     } catch (err) {
-//         res.status(500).json({ message: err.message })
-//     }
-// };
 
 exports.forgotPassword = async (req, res) => {
     try {
@@ -198,7 +177,7 @@ exports.forgotPassword = async (req, res) => {
             if (error) {
                 console.log(error);
             } else {
-                return res.status(201).json({ message: "Email sent successfully!" })
+                return res.status(201).json({ message: "Email sent successfully!", status: "success" })
             }
         });
     } catch (error) {
