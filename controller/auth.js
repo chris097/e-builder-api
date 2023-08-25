@@ -87,7 +87,8 @@ exports.registerUser = async (req, res, next) => {
             from: 'cevBuilder',
             to: `${email}`,
             subject: 'OTP for cevBuilder Registration',
-            text: `Your OTP for registration: ${otp} http://localhost:3000/verify-otp/${email}`
+            text: `Your OTP for registration: ${otp} 
+            https://cev-builder.vercel.app/verify-otp/${email}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
