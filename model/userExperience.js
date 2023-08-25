@@ -2,22 +2,18 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const workHistory = new Schema({
-    title: {
+const userExperience = new Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    job_title: {
         type: String,
         required: [true, 'title is required.']
     },
-    employer: {
+    company: {
         type: String,
-        required: [true, 'employer is required.']
-    },
-    // city: {
-    //     type: String,
-    //     required: [true, 'city is required.']
-    // },
-    state: {
-        type: String,
-        required: [true, 'state is required.']
+        required: [true, 'company is required.']
     },
     country: {
         type: String,
@@ -37,4 +33,4 @@ const workHistory = new Schema({
     craeted_at: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("WorkHistory", workHistory)
+module.exports = mongoose.model("userExperience", userExperience)

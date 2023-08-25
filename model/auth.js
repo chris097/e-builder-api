@@ -19,7 +19,12 @@ const authSchema = new Schema({
         minLength: [5, "password minimum lenght should be 5"]
     },
     token: {
-        type: String
+        type: String,
+        required: true
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     },
     created_at: {type: Date, default: Date.now}
 });
