@@ -16,20 +16,26 @@ exports.getSkills = async (req, res) => {
 };
 
 exports.createSkills = async (req, res) => {
+    const userId = req.user._id;
     const { name } = req.body;
     try {
         const skill = new Skill({
-            name: name,
-            _id: req._id
+            userId,
+            name: name
         });
-        if (!skill.name.length) {
-            res.status(400).json({message: "Wrong formatting"})
-        } else {
-            await skill.save();
-        }
-        console.log(skill)
+        await skill.save();
         res.status(201).json({ message: "Skill created successfully", status: 201, success: true })
     } catch (err) {
         res.json({ message: err.message })
+    };
+};
+
+exports.updateSkills = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        await Skill.findOneAndUpdate({ _id: userId }, req.body, { new: true });
+            res.status(201).json({ message: "Skills Updated Successfully!" });
+    } catch (err) {
+        res.json({message: err.message})
     }
 }

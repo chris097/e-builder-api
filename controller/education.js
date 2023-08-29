@@ -10,13 +10,13 @@ exports.getEducation = async (req, res) => {
 };
 
 exports.createEducation = async (req, res) => {
-    const { school_name, school_location, degree, field, start_date, end_date } = req.body;
+    const userId = req.user._id;
+    const { school_name, degree, start_date, end_date } = req.body;
     try {
         const education = new Education({
+            userId,
             school_name: school_name,
-            school_location: school_location,
             degree: degree,
-            field: field,
             start_date: start_date,
             end_date: end_date
         })
@@ -24,5 +24,15 @@ exports.createEducation = async (req, res) => {
         res.status(201).json({message: "education details successfully created", status: 201})
     } catch (err) {
         res.status(500).json({message: err.message})
+    }
+}
+
+exports.updateEducation = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        await Education.findOneAndUpdate({ _id: userId }, req.body, { new: true });
+            res.status(201).json({ message: "Education Updated Successfully!" });
+    } catch (err) {
+        res.json({message: err.message})
     }
 }

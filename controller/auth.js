@@ -51,10 +51,9 @@ exports.registerUser = async (req, res, next) => {
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-                console.log(error);
                 return res.status(500).json({ message: "Failed to send OTP" });
             } else {
-                return res.status(201).json({data: auth, message: "OTP sent successfully!" });
+                return res.status(201).json({data: auth, message: "OTP sent successfully!", status: 201 });
             }
         });
     } catch (err) {

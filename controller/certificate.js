@@ -16,21 +16,29 @@ exports.getCertificate = async (req, res) => {
 };
 
 exports.createCertificate = async (req, res) => {
-    const { cert } = req.body;
+    const userId = req.user._id;
+    const { title, title_url } = req.body;
     try {
         const certificate = new Certificate({
-            cert: cert,
-            _id: req._id
+            userId,
+            title: title,
+            title_url: title_url
         })
-        if (!certificate.cert.length) {
-            res.status(400).json({message: "Wrong format"})
-        } else {
-            await certificate.save();
-        };
+        await certificate.save();
         res.status(201).json({
             message: "certificate created successfully",
             status: 201
         })
+    } catch (err) {
+        res.json({ message: err.message })
+    }
+};
+
+exports.updateCertificate = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        await Certificate.findOneAndUpdate({ _id: userId }, req.body, { new: true });
+            res.status(201).json({ message: "Certificate Updated Successfully!" });
     } catch (err) {
         res.json({message: err.message})
     }

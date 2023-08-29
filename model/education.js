@@ -3,21 +3,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const education = new Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
     school_name: {
         type: String,
         required: [true, 'school name is required.']
     },
-    school_location: {
-        type: String,
-        required: [true, 'school location is required']
-    },
     degree: {
         type: String,
         required: [true, 'degree is required.']
-    },
-    field: {
-        type: String,
-        required: [true, 'field of study is required.']
     },
     start_date: {
         type: String,
