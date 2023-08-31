@@ -2,6 +2,7 @@ const Auth = require('../model/auth');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const hbs = require('nodemailer-express-handlebars');
 const otpGenerator = require('otp-generator');
 
 
@@ -41,13 +42,28 @@ exports.registerUser = async (req, res, next) => {
                 pass: `${PASSWORD}`
             }
         });
+
+        transporter.use('compile', hbs({
+            viewEngine: {
+                extname: '.hbs',
+                layoutsDir: 'templates/',
+                defaultLayout: false,
+                partialsDir: 'templates/',
+            },
+            viewPath: 'templates/',
+            extName: '.hbs'
+        }));
         
         const mailOptions = {
             from: 'cevBuilder',
             to: `${email}`,
             subject: 'OTP for cevBuilder Registration',
-            text: `Your OTP for registration: ${otp} 
-            http://localhost:3000/verify-otp/${email}`
+            template: "email_template",
+            context: {
+                email: email
+            }
+            // text: `Your OTP for registration: ${otp} 
+            // http://localhost:3000/verify-otp/${email}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
