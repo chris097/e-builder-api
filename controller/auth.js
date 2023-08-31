@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const otpGenerator = require('otp-generator');
 
+
 const { JWT_TOKEN, USERNAME, PASSWORD } = process.env;
 
 exports.getUsers = async (req, res) => {
@@ -46,7 +47,7 @@ exports.registerUser = async (req, res, next) => {
             to: `${email}`,
             subject: 'OTP for cevBuilder Registration',
             text: `Your OTP for registration: ${otp} 
-            https://cev-builder.vercel.app/verify-otp/${email}`
+            http://localhost:3000/verify-otp/${email}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
