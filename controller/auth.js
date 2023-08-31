@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const hbs = require('nodemailer-express-handlebars');
 const otpGenerator = require('otp-generator');
+const { transporter } = require('../mailer');
 
 
 const { JWT_TOKEN, USERNAME, PASSWORD } = process.env;
@@ -35,13 +36,13 @@ exports.registerUser = async (req, res, next) => {
 
         await auth.save();
 
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: `${USERNAME}`,
-                pass: `${PASSWORD}`
-            }
-        });
+        // const transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //         user: `${USERNAME}`,
+        //         pass: `${PASSWORD}`
+        //     }
+        // });
 
         transporter.use('compile', hbs({
             viewEngine: {
@@ -134,13 +135,13 @@ exports.forgotPassword = async (req, res) => {
         const auth = await Auth.findOne({ email: email });
         if (!auth) return res.status(404).json({ message: "User doesn't exist" });
         const token = jwt.sign({ _id: auth._id }, JWT_TOKEN, { expiresIn: "1h" });
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: `${USERNAME}`,
-                pass: `${PASSWORD}`
-            }
-        });
+        // const transporter = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //         user: `${USERNAME}`,
+        //         pass: `${PASSWORD}`
+        //     }
+        // });
         const mailOptions = {
             from: 'cevBuilder',
             to: `${email}`,
