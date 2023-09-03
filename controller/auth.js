@@ -146,7 +146,7 @@ exports.forgotPassword = async (req, res) => {
             from: 'cevBuilder',
             to: `${email}`,
             subject: 'Reset Your Password',
-            text: `http://localhost:3000/reset-password/${auth._id}/${token}`
+            text: `https://localhost:3000/reset-password/${auth._id}/${token}`
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
