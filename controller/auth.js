@@ -1,13 +1,12 @@
 const Auth = require('../model/auth');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 const hbs = require('nodemailer-express-handlebars');
 const otpGenerator = require('otp-generator');
 const { transporter } = require('../mailer');
 
 
-const { JWT_TOKEN, USERNAME, PASSWORD } = process.env;
+const { JWT_TOKEN } = process.env;
 
 exports.getUsers = async (req, res) => {
     const auth = await Auth.find();
