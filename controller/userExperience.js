@@ -31,7 +31,7 @@ exports.createUserExperience = async (req, res) => {
             end_date: end_date
         });
         await user.save()
-        res.status(201).json({ message: 'User experience successfully created.' })
+        res.status(201).json({ message: 'User experience successfully created.', status: 201 })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
