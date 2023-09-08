@@ -15,7 +15,6 @@ exports.createUserExperience = async (req, res) => {
     const {
         job_title,
         company,
-        country,
         description,
         start_date,
         end_date
@@ -25,7 +24,6 @@ exports.createUserExperience = async (req, res) => {
             userId,
             job_title: job_title,
             company: company,
-            country: country,
             description: description,
             start_date: start_date,
             end_date: end_date

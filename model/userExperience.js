@@ -15,10 +15,10 @@ const userExperience = new Schema({
         type: String,
         required: [true, 'company is required.']
     },
-    country: {
-        type: String,
-        required: [true, 'country is required.']
-    },
+    // country: {
+    //     type: String,
+    //     required: [true, 'country is required.']
+    // },
     description: {
         type: String,
         required: [true, 'description is required.']
