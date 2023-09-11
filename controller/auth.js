@@ -43,16 +43,16 @@ exports.registerUser = async (req, res, next) => {
         //     }
         // });
 
-        // transporter.use('compile', hbs({
-        //     viewEngine: {
-        //         extname: '.hbs',
-        //         layoutsDir: 'templates/',
-        //         defaultLayout: false,
-        //         partialsDir: 'templates/',
-        //     },
-        //     viewPath: 'templates/',
-        //     extName: '.hbs'
-        // }));
+        transporter.use('compile', hbs({
+            viewEngine: {
+                extname: '.hbs',
+                layoutsDir: 'templates/',
+                defaultLayout: false,
+                partialsDir: 'templates/',
+            },
+            viewPath: 'templates/',
+            extName: '.hbs'
+        }));
         
         const mailOptions = {
             from: 'cevBuilder',
