@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/chris097/e-builder-api.git"
   },
+  "engines": {
+  "node": ">=14.20.1"
+},
   "author": "",
   "license": "ISC",
   "bugs": {
