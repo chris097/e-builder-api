@@ -11,12 +11,13 @@ exports.getEducation = async (req, res) => {
 
 exports.createEducation = async (req, res) => {
     const userId = req.user._id;
-    const { school_name, degree, start_date, end_date } = req.body;
+    const { school_name, degree, program, start_date, end_date } = req.body;
     try {
         const education = new Education({
             userId,
             school_name: school_name,
             degree: degree,
+            program: program,
             start_date: start_date,
             end_date: end_date
         })

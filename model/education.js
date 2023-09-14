@@ -15,6 +15,10 @@ const education = new Schema({
         type: String,
         required: [true, 'degree is required.']
     },
+    program: {
+        type: String,
+        required: [true, 'program is required.']
+    },
     start_date: {
         type: String,
         required: [true, 'graduation start date is required.']
