@@ -13,7 +13,7 @@ const certificate = new Schema({
     },
     title_url: {
         type: String,
-        required: [true, 'title is required.']
+        required: [true, 'title_url is required.']
     }
 });
 
