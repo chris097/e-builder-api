@@ -21,6 +21,7 @@ const corsOptions ={
     credentials:true,       
     optionSuccessStatus:200
 }
+app.use(express.static('public'));
 app.use(cors(corsOptions));
 app.use('/api/v1', userInfo);
 app.use('/api/v1', education);
