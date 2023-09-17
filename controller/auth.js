@@ -59,10 +59,10 @@ exports.registerUser = async (req, res, next) => {
             to: `${email}`,
             subject: 'OTP for cevBuilder Registration',
             template: "email_template",
-            context: {
-                email: email,
-                otp: otp
-            }
+            // context: {
+            //     email: email,
+            //     otp: otp
+            // }
             // text: `Your OTP for registration: ${otp} 
             // http://localhost:3000/verify-otp/${email}`
         };
