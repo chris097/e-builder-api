@@ -21,7 +21,7 @@ const corsOptions ={
     credentials:true,       
     optionSuccessStatus:200
 }
-app.use(express.static('public'));
+
 app.use(cors(corsOptions));
 app.use('/api/v1', userInfo);
 app.use('/api/v1', education);
@@ -30,10 +30,10 @@ app.use('/api/v1', technicalSkill);
 app.use('/api/v1', certificate);
 app.use('/api/v1', auth);
 
-// app.get('/', (req, res) => {
-//     res.send("Hello world")
-//     console.log("hello world")
-// })
+app.get('/', (req, res) => {
+    res.send("Hello world")
+    console.log("hello world")
+})
 
 const port = process.env.PORT || 5400;
 
