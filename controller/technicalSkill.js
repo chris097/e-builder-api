@@ -33,8 +33,8 @@ exports.createSkills = async (req, res) => {
 exports.updateSkills = async (req, res) => {
     try {
         const userId = req.params.id;
-        await Skill.findOneAndUpdate({ _id: userId }, req.body, { new: true });
-            res.status(201).json({ message: "Skills Updated Successfully!" });
+        const skill = await Skill.findOneAndUpdate({ _id: userId }, req.body, { new: true });
+            res.status(201).json({ message: "Skills Updated Successfully!", status: 201 });
     } catch (err) {
         res.json({message: err.message})
     }
