@@ -10,7 +10,8 @@ const education = require('./router/education');
 const workHistory = require('./router/userExperience');
 const technicalSkill = require('./router/technicalSkill');
 const certificate = require('./router/certificate');
-const auth = require('./router/auth')
+const allInfo = require('./router/allInfo');
+const auth = require('./router/auth');
 
 
 const { MONGODB_URL_TEST } = process.env;
@@ -24,6 +25,7 @@ const corsOptions ={
 
 app.use(cors(corsOptions));
 app.use('/api/v1', userInfo);
+app.use('/api/v1', allInfo);
 app.use('/api/v1', education);
 app.use('/api/v1', workHistory);
 app.use('/api/v1', technicalSkill);

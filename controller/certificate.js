@@ -2,7 +2,8 @@ const Certificate = require("../model/certificate");
 
 exports.getCertificate = async (req, res) => {
     try {
-        const certificate = await Certificate.find();
+         const userId = req.user._id;
+        const certificate = await Certificate.find({userId});
         res.status(200).json(
             {
                 certificate,

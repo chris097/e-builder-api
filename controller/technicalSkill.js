@@ -2,7 +2,8 @@ const Skill = require("../model/technicalSkill");
 
 exports.getSkills = async (req, res) => {
     try {
-        const skills = await Skill.find();
+        const userId = req.user._id;
+        const skills = await Skill.find({userId});
         res.status(200).json(
             {
                 skills,
@@ -33,7 +34,7 @@ exports.createSkills = async (req, res) => {
 exports.updateSkills = async (req, res) => {
     try {
         const userId = req.params.id;
-        const skill = await Skill.findOneAndUpdate({ _id: userId }, req.body, { new: true });
+        await Skill.findOneAndUpdate({ _id: userId }, req.body, { new: true });
             res.status(201).json({ message: "Skills Updated Successfully!", status: 201 });
     } catch (err) {
         res.json({message: err.message})
