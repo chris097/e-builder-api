@@ -24,19 +24,6 @@ exports.getAllInfo = async (req, res) => {
         }else if (userInfo.length === 1 && certificate.length === 1 && education.length === 1 && userExperience.length === 1 && skills.length === 1) {
              return res.status(200).json({ isCreated: true, percentage: "100%", status: 200, message: "Successful" });
         }else res.status(404).json({ isCreated: false, percentage: "0%", status: 404, message: "Not successful" });
-        
-
-        // if (
-        //     userInfo?.length !== 0 ||
-        //     certificate?.length !== 0 ||
-        //     education?.length !== 0 ||
-        //     userExperience?.length !== 0 ||
-        //     skills?.length !== 0)
-        // {
-        //      return res.status(200).json({ isCreated: true, status: 200, message: "Successfully" });
-        // } else {
-        //      res.status(404).json({ isCreated: false, status: 404, message: "Not successfully" });
-        // }
        
     } catch (err) {
         res.status(500).json({message: err.message})
