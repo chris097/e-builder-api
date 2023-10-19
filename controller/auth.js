@@ -109,7 +109,7 @@ exports.loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const auth = await Auth.findOne({ email: email });
-        if (!auth) return res.status(400).json({ message: "Crendentials not found" });
+        if (!auth) return res.status(400).json({ message: "Crendentials not found", status: 400 });
         const token = jwt.sign({ _id: auth._id, email }, JWT_TOKEN, { expiresIn: "1h" });
         auth.token = token;
         if (auth) {
