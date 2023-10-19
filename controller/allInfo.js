@@ -45,11 +45,11 @@ exports.getPercentage = async (req, res) => {
           const skills = await TechnicalSkill.find({ userId });
 
           return res.status(200).json({
-               isUserInfo: (userInfo.length === 1) && "20",
-               isCertificate: (certificate.length === 1) && "40",
-               isEducation: (education.length === 1) && "60",
-               isUserExp: (userExperience.length === 1 || userExperience.length === 2) && "80",
-               isSkills: (skills.length === 1) && "100",
+               isUserInfo: (userInfo.length === 1 )&& "20",
+               isUserExp: (userExperience.length === 1 || userExperience.length === 2 )&& "40",
+               isSkills: (skills.length === 1) && "60",
+               isEducation: (education.length === 1) && "80",
+               isCertificate: (certificate.length === 1) && "100",
           });
 
      } catch (err) {
