@@ -22,7 +22,7 @@ exports.registerUser = async (req, res, next) => {
         });
         
         if(!email) return res.status(400).json({message: 'email is required.'})
-        if(!password) return res.status(400).json({message: 'password is required.'})
+        if(!password) return res.status(400).json({message: 'password is required.', status: 404})
 
         const salt = await bcrypt.genSalt(10);
         auth.password = await bcrypt.hash(auth.password, salt);
@@ -109,7 +109,7 @@ exports.loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const auth = await Auth.findOne({ email: email });
-        if (!auth) return res.status(400).json({ message: "Crendentials not found", status: 400 });
+        if (!auth) return res.status(400).json({ message: "Crendentials not found", status: 404 });
         const token = jwt.sign({ _id: auth._id, email }, JWT_TOKEN, { expiresIn: "1h" });
         auth.token = token;
         if (auth) {
